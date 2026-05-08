@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
+import { useToast } from '../components/Toast';
 import Card from '../components/Card';
 import PageHeader from '../components/PageHeader';
 import styles from './Profile.module.css';
@@ -8,6 +9,7 @@ const ROLE_LABELS = { admin: 'Administrador', manager: 'Gerente', recruiter: 'Re
 
 export default function Profile() {
   const { user, updateUser } = useAuth();
+  const toast = useToast();
   const [form, setForm] = useState({ name: user?.name || '', department: user?.department || '', phone: user?.phone || '' });
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
@@ -23,9 +25,12 @@ export default function Profile() {
     try {
       await updateUser(form);
       setSaved(true);
+      toast.success('Perfil actualizado correctamente.');
       setTimeout(() => setSaved(false), 3000);
     } catch {
-      setError('Error al guardar los cambios.');
+      const msg = 'Error al guardar los cambios. Intentá nuevamente.';
+      setError(msg);
+      toast.error(msg);
     } finally {
       setSaving(false);
     }

@@ -1,150 +1,262 @@
-# TalentStream AI — Plataforma de RRHH con Inteligencia Artificial
+# TalentStream AI — Plataforma de Recursos Humanos con Inteligencia Artificial
 
-Una plataforma moderna de Recursos Humanos con análisis de CVs, pruebas psicotécnicas y dashboard de métricas en tiempo real.
-
----
-
-## Requisitos
-
-Solo necesitás tener instalado:
-
-- [Docker](https://docs.docker.com/get-docker/)
-- [Docker Compose](https://docs.docker.com/compose/install/) (incluido en Docker Desktop)
+> Una herramienta moderna para gestionar postulantes, analizar CVs y administrar pruebas de selección de personal — todo en un solo lugar.
 
 ---
 
-## Inicio rápido (3 pasos)
+## ¿Qué es esto?
 
-### 1. Clonar y entrar al proyecto
+TalentStream AI es una aplicación web que podés abrir en tu navegador (como si fuera Gmail o Instagram, pero en tu propia computadora). Está pensada para equipos de Recursos Humanos que quieren:
 
-```bash
-git clone <url-del-repo>
-cd Proyecto-IA-aplicada-a-RRHH
+- Ver y analizar los CVs de candidatos con puntaje automático
+- Asignar y revisar pruebas psicotécnicas
+- Tener un panel de control con estadísticas del proceso de selección
+
+Todo funciona localmente — no necesitás internet ni contratar ningún servicio externo.
+
+---
+
+## Antes de empezar: ¿qué necesito instalar?
+
+Solo necesitás **una sola herramienta**: **Docker Desktop**.
+
+> Docker es como un "paquete todo incluido" que contiene todo lo que la app necesita para funcionar. No necesitás entender cómo funciona por dentro — solo instalarlo y abrirlo.
+
+---
+
+### ¿Cómo instalo Docker Desktop?
+
+#### En Windows
+
+1. Abrí tu navegador y andá a: **https://www.docker.com/products/docker-desktop**
+2. Hacé clic en el botón azul que dice **"Download for Windows"**
+3. Cuando termine de descargar, hacé doble clic en el archivo `.exe` que bajaste
+4. Seguí los pasos del instalador (siempre clic en "Next" o "Aceptar")
+5. Cuando termine, reiniciá la computadora
+6. Después de reiniciar, buscá **Docker Desktop** en el menú de inicio y ábrilo
+7. Esperá a que aparezca la ballena azul en la barra de tareas (abajo a la derecha) — eso significa que Docker está listo
+
+> ⚠️ **Importante en Windows**: Docker Desktop puede pedirte que instales "WSL 2". Si aparece ese mensaje, hacé clic en el enlace que te da y seguí las instrucciones — es un paso normal.
+
+#### En Mac
+
+1. Abrí tu navegador y andá a: **https://www.docker.com/products/docker-desktop**
+2. Hacé clic en el botón que dice **"Download for Mac"**
+   - Si tu Mac tiene chip **M1, M2 o M3** (los más nuevos), elegí "Apple Silicon"
+   - Si tu Mac es más viejo (anterior a 2021), elegí "Intel Chip"
+   - ¿No sabés cuál tenés? Hacé clic en la manzana () arriba a la izquierda → "Acerca de este Mac" → si dice "Chip Apple M1/M2/M3" es Apple Silicon, si dice "Intel Core" es Intel
+3. Abrí el archivo `.dmg` que bajaste y arrastrá Docker a la carpeta Aplicaciones
+4. Abrí Docker desde Aplicaciones
+5. Esperá a que aparezca la ballena en la barra de menú (arriba a la derecha) — eso significa que Docker está listo
+
+---
+
+## Cómo abrir la aplicación (paso a paso)
+
+### Paso 1: Asegurate de que Docker esté abierto
+
+- **Windows**: Buscá la ballena azul en la barra de tareas abajo a la derecha. Si no está, abrí "Docker Desktop" desde el menú de inicio.
+- **Mac**: Buscá la ballena en la barra de menú arriba a la derecha. Si no está, abrí "Docker Desktop" desde Aplicaciones.
+
+La ballena tiene que estar **quieta** (sin moverse), lo que indica que Docker está listo.
+
+### Paso 2: Abrí una terminal (la "consola de comandos")
+
+No te asustes, solo vamos a escribir un comando corto.
+
+#### En Windows
+1. Apretá las teclas **Windows + R** al mismo tiempo
+2. Escribí `cmd` y apretá Enter
+3. Se abre una ventana negra — eso es la terminal
+
+#### En Mac
+1. Apretá **Command + Espacio** al mismo tiempo para abrir Spotlight
+2. Escribí `Terminal` y apretá Enter
+3. Se abre una ventana — eso es la terminal
+
+### Paso 3: Navegá a la carpeta del proyecto
+
+En la terminal, escribí este comando y apretá Enter:
+
+**En Windows:**
+```
+cd C:\ruta\donde\guardaste\el\proyecto\Proyecto-IA-aplicada-a-RRHH
 ```
 
-### 2. Levantar todos los servicios
+**En Mac:**
+```
+cd /ruta/donde/guardaste/el/proyecto/Proyecto-IA-aplicada-a-RRHH
+```
 
-```bash
+> 💡 **¿No sabés la ruta?** En Windows podés arrastrar la carpeta a la ventana negra y aparece sola. En Mac hacés lo mismo.
+
+### Paso 4: Levantá la aplicación
+
+Escribí este comando y apretá Enter:
+
+```
 docker compose up --build
 ```
 
-La primera vez tarda ~3-5 minutos mientras descarga las imágenes y compila el frontend.
+**La primera vez tarda entre 3 y 8 minutos** — Docker está descargando todo lo necesario. Vas a ver mucho texto en pantalla: eso es normal. No cierres esa ventana.
 
-### 3. Abrir la app
-
-Abrí tu navegador en: **http://localhost:3000**
-
----
-
-## Acceso demo
-
-| Campo       | Valor                |
-|-------------|----------------------|
-| Email       | demo@talentstream.ai |
-| Contraseña  | Demo1234             |
-
----
-
-## Estructura del proyecto
+Cuando veas algo parecido a esto, significa que está listo:
 
 ```
-Proyecto-IA-aplicada-a-RRHH/
-├── docker-compose.yml       # Orquestación de los 3 servicios
-├── .env                     # Variables de entorno
-├── backend/
-│   ├── Dockerfile
-│   ├── package.json
-│   └── src/
-│       ├── server.js        # Punto de entrada Express
-│       ├── config/          # Conexión a MongoDB
-│       ├── models/          # Esquemas: User, CV, HRTest, Metric
-│       ├── routes/          # API: auth, cvs, tests, dashboard
-│       ├── middleware/       # Autenticación JWT
-│       └── seed/            # Datos de ejemplo precargados
-└── frontend/
-    ├── Dockerfile
-    ├── nginx.conf
-    └── src/
-        ├── App.jsx          # Rutas principales
-        ├── context/         # AuthContext con JWT
-        ├── pages/           # Login, Register, Dashboard, CVs, Tests, Settings, Profile
-        ├── components/      # Layout, Card, Badge, PageHeader
-        └── utils/           # Cliente HTTP Axios
+talentstream_backend   | TalentStream API corriendo en puerto 5000
+talentstream_backend   | MongoDB conectado
+talentstream_backend   | Datos de ejemplo cargados exitosamente.
 ```
+
+### Paso 5: Abrí la aplicación en tu navegador
+
+Abrí **Google Chrome**, **Firefox**, o el navegador que uses, y escribí en la barra de direcciones:
+
+```
+http://localhost:3000
+```
+
+¡Listo! La aplicación debería aparecer.
 
 ---
 
-## Servicios y puertos
+## Acceso demo (para probar sin crear cuenta)
 
-| Servicio  | Puerto | Descripción              |
-|-----------|--------|--------------------------|
-| Frontend  | 3000   | React + Vite (via Nginx) |
-| Backend   | 5000   | Node.js + Express API    |
-| MongoDB   | 27017  | Base de datos            |
+Podés entrar directamente con estos datos de prueba:
 
----
+| | |
+|---|---|
+| **Email** | demo@talentstream.ai |
+| **Contraseña** | Demo1234 |
 
-## API endpoints principales
-
-```
-POST   /api/auth/login        Iniciar sesión
-POST   /api/auth/register     Registrar usuario
-GET    /api/auth/me           Obtener usuario actual
-PUT    /api/auth/me           Actualizar perfil
-
-GET    /api/dashboard/stats   Estadísticas completas del dashboard
-
-GET    /api/cvs               Listar CVs (filtros: status, search, page)
-GET    /api/cvs/:id           Detalle de un CV
-PUT    /api/cvs/:id/status    Cambiar estado de un CV
-
-GET    /api/tests             Listar pruebas (filtros: testType, page)
-GET    /api/tests/:id         Detalle de una prueba
-```
+O hacé clic en el botón **"Usar cuenta demo"** que aparece en la pantalla de inicio de sesión.
 
 ---
 
-## Comandos útiles
+## Cómo cerrar la aplicación
+
+Cuando termines de usarla, volvé a la terminal (la ventana negra/blanca donde escribiste el comando) y apretá:
+
+- **Windows y Mac**: las teclas `Ctrl + C` al mismo tiempo
+
+Eso detiene la aplicación. Para cerrar también la terminal, simplemente cerrá la ventana.
+
+---
+
+## Cómo volver a abrir la aplicación (después de cerrarla)
+
+La próxima vez que quieras usarla:
+
+1. Asegurate de que Docker Desktop esté abierto (la ballena en la barra)
+2. Abrí la terminal
+3. Navegá a la carpeta del proyecto (igual que el Paso 3)
+4. Escribí este comando (más rápido que la primera vez):
+
+```
+docker compose up
+```
+
+5. Esperá a ver el mensaje de que está listo
+6. Abrí el navegador en `http://localhost:3000`
+
+---
+
+## ¿Qué tiene la aplicación?
+
+### Pantallas disponibles
+
+| Pantalla | Para qué sirve |
+|---|---|
+| **Login** | Iniciar sesión con tu cuenta |
+| **Registro** | Crear una nueva cuenta |
+| **Olvidé mi contraseña** | Recuperar acceso a tu cuenta |
+| **Dashboard** | Ver todas las métricas y estadísticas |
+| **Análisis de CVs** | Ver, filtrar y analizar los CVs de candidatos |
+| **Pruebas de HR** | Ver y gestionar las pruebas psicotécnicas |
+| **Configuración** | Ajustar preferencias de la plataforma |
+| **Perfil** | Editar tu información personal |
+
+### Datos de ejemplo incluidos
+
+La aplicación viene con datos cargados para que puedas ver cómo funciona:
+- 8 CVs de candidatos con análisis de IA
+- 8 pruebas psicotécnicas con resultados
+- 6 meses de métricas históricas
+- 3 usuarios (1 administrador demo, 1 gerente, 1 reclutador)
+
+---
+
+## Solución de problemas frecuentes
+
+### "La página no carga" o "No se puede acceder al sitio"
+
+1. Verificá que Docker Desktop esté abierto (la ballena en la barra)
+2. Verificá que hayas ejecutado `docker compose up` en la terminal
+3. Esperá un par de minutos — la primera vez tarda más
+4. Asegurate de escribir bien la dirección: `http://localhost:3000` (con el http, sin www)
+
+### "Error" en la terminal al ejecutar docker compose up
+
+- Asegurate de estar dentro de la carpeta correcta del proyecto
+- Verificá que Docker Desktop esté completamente iniciado (la ballena quieta, sin girar)
+- En Windows: verificá que Docker tenga permisos de administrador
+
+### "Ya tengo la aplicación corriendo pero no funciona bien"
+
+Intentá este comando para reiniciar todo desde cero:
+
+```
+docker compose down && docker compose up --build
+```
+
+### La aplicación corre lento
+
+Es normal la primera vez. Una vez que los datos están cargados, todo funciona más rápido.
+
+---
+
+## Información técnica (para quien quiera saber más)
+
+La aplicación está construida con:
+
+- **Pantallas** (frontend): React + Vite — lo que ves en el navegador
+- **Servidor** (backend): Node.js + Express — el que procesa los datos
+- **Base de datos**: MongoDB — donde se guarda toda la información
+- **Contenedor**: Docker — el que hace que todo funcione junto sin instalar nada extra
+
+Todo corre en tu computadora. Ningún dato sale a internet.
+
+### Puertos usados
+
+| Servicio | Puerto |
+|---|---|
+| Aplicación web | 3000 |
+| API (servidor) | 5000 |
+| Base de datos | 27017 |
+
+---
+
+## Comandos útiles (para usuarios más avanzados)
 
 ```bash
-# Ver logs en tiempo real
+# Levantar la aplicación (primera vez o después de cambios)
+docker compose up --build
+
+# Levantar la aplicación (uso normal)
+docker compose up
+
+# Levantar en segundo plano (sin ocupar la terminal)
+docker compose up -d
+
+# Ver qué está pasando mientras corre
 docker compose logs -f
 
-# Parar todos los servicios
+# Detener la aplicación
 docker compose down
 
-# Parar y borrar datos de la base de datos
+# Detener Y borrar todos los datos guardados (empezar de cero)
 docker compose down -v
 
-# Rebuild solo el frontend
-docker compose up --build frontend
-
-# Acceder a la base de datos
-docker exec -it talentstream_db mongosh -u admin -p adminpass
+# Ver si los contenedores están corriendo
+docker compose ps
 ```
-
----
-
-## Variables de entorno (.env)
-
-```env
-NODE_ENV=production
-PORT=5000
-JWT_SECRET=tu_clave_secreta_aqui
-JWT_EXPIRES_IN=7d
-MONGO_URI=mongodb://admin:adminpass@mongodb:27017/talentstream?authSource=admin
-```
-
-> Para producción, cambiá `JWT_SECRET` por una clave fuerte y aleatoria.
-
----
-
-## Funcionalidades
-
-- **Login / Registro** con JWT (token en localStorage, rutas protegidas)
-- **Dashboard** con gráficos de barras, líneas y torta (datos reales de MongoDB)
-- **Análisis de CVs**: tarjetas con score IA, filtros, búsqueda, panel lateral con análisis completo
-- **Pruebas de HR**: listado con tipos (técnica, personalidad, cognitiva, liderazgo, emocional), gráfico radar de resultados
-- **Perfil de usuario**: edición de nombre, departamento y teléfono
-- **Configuración**: idioma, notificaciones, integraciones, apariencia
-- **Datos precargados**: 8 CVs + 8 pruebas + 6 meses de métricas + usuario demo

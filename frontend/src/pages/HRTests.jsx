@@ -3,6 +3,9 @@ import api from '../utils/api';
 import Card from '../components/Card';
 import Badge from '../components/Badge';
 import PageHeader from '../components/PageHeader';
+import EmptyState from '../components/EmptyState';
+import { Skeleton } from '../components/Skeleton';
+import { useToast } from '../components/Toast';
 import styles from './HRTests.module.css';
 
 const TEST_TYPES = ['', 'technical', 'personality', 'cognitive', 'leadership', 'emotional'];
@@ -138,6 +141,7 @@ export default function HRTests() {
   const [page, setPage] = useState(1);
   const [pages, setPages] = useState(1);
   const [selected, setSelected] = useState(null);
+  const toast = useToast();
 
   const fetchTests = useCallback(async () => {
     setLoading(true);
@@ -149,6 +153,7 @@ export default function HRTests() {
       setTotal(res.data.total);
       setPages(res.data.pages);
     } catch {
+      toast.error('No se pudieron cargar las pruebas. Verificá tu conexión.');
     } finally {
       setLoading(false);
     }
@@ -180,9 +185,30 @@ export default function HRTests() {
       </Card>
 
       {loading ? (
-        <div className={styles.loadingState}><div className={styles.spinner} /><span>Cargando pruebas...</span></div>
+        <Card>
+          <div style={{ padding: '20px', display: 'flex', flexDirection: 'column', gap: 12 }}>
+            {Array.from({ length: 6 }).map((_, i) => (
+              <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 16, padding: '14px 0', borderBottom: '1px solid #F9FAFB' }}>
+                <Skeleton width={40} height={40} borderRadius={10} />
+                <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 6 }}>
+                  <Skeleton width="50%" height={14} />
+                  <Skeleton width="35%" height={12} />
+                </div>
+                <Skeleton width={80} height={22} borderRadius={20} />
+                <Skeleton width={60} height={22} borderRadius={20} />
+                <Skeleton width={30} height={20} />
+              </div>
+            ))}
+          </div>
+        </Card>
       ) : tests.length === 0 ? (
-        <div className={styles.emptyState}><span>📭</span><span>No se encontraron pruebas</span></div>
+        <Card>
+          <EmptyState
+            preset={typeFilter ? 'search' : 'tests'}
+            action={typeFilter ? () => setTypeFilter('') : undefined}
+            actionLabel={typeFilter ? 'Ver todas las pruebas' : undefined}
+          />
+        </Card>
       ) : (
         <>
           <div className={styles.list}>

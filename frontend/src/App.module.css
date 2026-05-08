@@ -1,0 +1,54 @@
+.appLoader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: var(--bg);
+}
+
+.loaderContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.loaderIcon {
+  font-size: 32px;
+  filter: drop-shadow(0 0 12px rgba(79,70,229,0.5));
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50%       { transform: scale(1.1); opacity: 0.8; }
+}
+
+.loaderName {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.3px;
+}
+
+.loaderBar {
+  width: 120px;
+  height: 3px;
+  background: var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+.loaderFill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), var(--primary-light));
+  border-radius: 3px;
+  animation: loadbar 1.4s ease-in-out infinite;
+}
+
+@keyframes loadbar {
+  0%   { width: 0%;   margin-left: 0; }
+  50%  { width: 70%;  margin-left: 0; }
+  100% { width: 0%;   margin-left: 100%; }
+}

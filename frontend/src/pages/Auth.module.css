@@ -190,6 +190,22 @@
   color: var(--text-primary);
 }
 
+.fieldLabelRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.forgotLink {
+  font-size: 12px;
+  color: var(--primary);
+  font-weight: 500;
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+
+.forgotLink:hover { opacity: 0.75; text-decoration: underline; }
+
 .field input, .field select {
   padding: 10px 12px;
   border: 1.5px solid var(--border);

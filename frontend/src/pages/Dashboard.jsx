@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { BarChart, Bar, LineChart, Line, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
 import api from '../utils/api';
 import { useAuth } from '../context/AuthContext';
+import { useToast } from '../components/Toast';
 import { StatCard } from '../components/Card';
 import Card from '../components/Card';
 import Badge from '../components/Badge';
 import PageHeader from '../components/PageHeader';
+import { DashboardSkeleton } from '../components/Skeleton';
 import styles from './Dashboard.module.css';
 
 const STATUS_COLORS = { pending: '#F59E0B', reviewing: '#3B82F6', approved: '#10B981', rejected: '#EF4444', hired: '#8B5CF6' };
@@ -25,6 +27,7 @@ function ScoreBar({ value }) {
 
 export default function Dashboard() {
   const { user } = useAuth();
+  const toast = useToast();
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -32,7 +35,10 @@ export default function Dashboard() {
   useEffect(() => {
     api.get('/dashboard/stats')
       .then(res => setData(res.data))
-      .catch(() => setError('No se pudieron cargar las estadísticas.'))
+      .catch(() => {
+        setError('No se pudieron cargar las estadísticas.');
+        toast.error('Error al cargar el dashboard. Verificá que el servidor esté funcionando.');
+      })
       .finally(() => setLoading(false));
   }, []);
 
@@ -41,16 +47,25 @@ export default function Dashboard() {
 
   if (loading) return (
     <div className={styles.page}>
-      <div className={styles.loading}>
-        <div className={styles.spinner} />
-        <span>Cargando dashboard...</span>
-      </div>
+      <DashboardSkeleton />
     </div>
   );
 
   if (error) return (
     <div className={styles.page}>
-      <div className={styles.errorState}>{error}</div>
+      <div className={styles.errorState}>
+        <span style={{ fontSize: 32 }}>⚠️</span>
+        <strong>No se pudieron cargar las estadísticas</strong>
+        <span style={{ fontSize: 13, color: 'var(--text-secondary)' }}>
+          Verificá que Docker esté corriendo y volvé a intentarlo.
+        </span>
+        <button
+          onClick={() => window.location.reload()}
+          style={{ marginTop: 8, padding: '9px 20px', background: 'var(--primary)', color: '#fff', border: 'none', borderRadius: 'var(--radius)', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}
+        >
+          Reintentar
+        </button>
+      </div>
     </div>
   );
 

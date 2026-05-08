@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { useToast } from '../components/Toast';
 import styles from './Auth.module.css';
 
 export default function Login() {
   const { login } = useAuth();
   const navigate = useNavigate();
+  const toast = useToast();
   const [form, setForm] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -18,15 +20,21 @@ export default function Login() {
     setLoading(true);
     try {
       await login(form.email, form.password);
+      toast.success('¡Bienvenido de vuelta!');
       navigate('/dashboard');
     } catch (err) {
-      setError(err.response?.data?.message || 'Error al iniciar sesión.');
+      const msg = err.response?.data?.message || 'Email o contraseña incorrectos. Revisá tus datos.';
+      setError(msg);
+      toast.error(msg);
     } finally {
       setLoading(false);
     }
   };
 
-  const fillDemo = () => setForm({ email: 'demo@talentstream.ai', password: 'Demo1234' });
+  const fillDemo = () => {
+    setForm({ email: 'demo@talentstream.ai', password: 'Demo1234' });
+    toast.info('Datos demo cargados. Hacé clic en Ingresar.');
+  };
 
   return (
     <div className={styles.authPage}>
@@ -83,7 +91,10 @@ export default function Login() {
             </div>
 
             <div className={styles.field}>
-              <label htmlFor="password">Contraseña</label>
+              <div className={styles.fieldLabelRow}>
+                <label htmlFor="password">Contraseña</label>
+                <Link to="/forgot-password" className={styles.forgotLink}>¿Olvidaste tu contraseña?</Link>
+              </div>
               <input
                 id="password"
                 type="password"

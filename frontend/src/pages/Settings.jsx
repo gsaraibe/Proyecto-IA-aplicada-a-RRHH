@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Card from '../components/Card';
 import PageHeader from '../components/PageHeader';
+import { useToast } from '../components/Toast';
 import styles from './Settings.module.css';
 
 const SECTIONS = ['General', 'Notificaciones', 'Integraciones', 'Apariencia'];
@@ -20,12 +21,14 @@ export default function Settings() {
     retentionDays: '90',
   });
   const [saved, setSaved] = useState(false);
+  const toast = useToast();
 
   const toggle = (key) => setSettings(s => ({ ...s, [key]: !s[key] }));
   const set = (key, val) => setSettings(s => ({ ...s, [key]: val }));
 
   const handleSave = () => {
     setSaved(true);
+    toast.success('Configuración guardada correctamente.');
     setTimeout(() => setSaved(false), 3000);
   };
 

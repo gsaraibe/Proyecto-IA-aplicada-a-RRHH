@@ -1,0 +1,66 @@
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #F3F4F6 25%, #E9EAEC 50%, #F3F4F6 75%);
+  background-size: 800px 100%;
+  animation: shimmer 1.4s infinite ease-in-out;
+  display: block;
+  flex-shrink: 0;
+}
+
+.statCard {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  border: 1px solid #E5E7EB;
+  padding: 20px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.statBody {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.cvCard {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  border: 1px solid #E5E7EB;
+  padding: 18px;
+}
+
+.cvTop {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.cvSkills {
+  display: flex;
+  gap: 6px;
+  margin: 12px 0;
+}
+
+.cvFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 10px;
+  border-top: 1px solid #F3F4F6;
+}
+
+.chartSkeleton {
+  background: #fff;
+  border-radius: 12px;
+  height: 280px;
+  border: 1px solid #E5E7EB;
+  overflow: hidden;
+}

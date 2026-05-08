@@ -3,6 +3,9 @@ import api from '../utils/api';
 import Card from '../components/Card';
 import Badge from '../components/Badge';
 import PageHeader from '../components/PageHeader';
+import EmptyState from '../components/EmptyState';
+import { CVCardSkeleton } from '../components/Skeleton';
+import { useToast } from '../components/Toast';
 import styles from './CVAnalysis.module.css';
 
 const STATUS_OPTIONS = ['', 'pending', 'reviewing', 'approved', 'rejected', 'hired'];
@@ -22,9 +25,12 @@ function ScoreCircle({ value }) {
   );
 }
 
+const STATUS_LABELS_SHORT = { reviewing: 'En revisión', approved: 'Aprobado', rejected: 'Rechazado', hired: 'Contratado' };
+
 function CVDrawer({ cv, onClose, onStatusChange }) {
   const [status, setStatus] = useState(cv.status);
   const [saving, setSaving] = useState(false);
+  const toast = useToast();
 
   const handleStatus = async (newStatus) => {
     setSaving(true);
@@ -32,6 +38,9 @@ function CVDrawer({ cv, onClose, onStatusChange }) {
       await api.put(`/cvs/${cv._id}/status`, { status: newStatus });
       setStatus(newStatus);
       onStatusChange(cv._id, newStatus);
+      toast.success(`Estado actualizado a "${STATUS_LABELS_SHORT[newStatus]}".`);
+    } catch {
+      toast.error('No se pudo actualizar el estado. Intentá nuevamente.');
     } finally {
       setSaving(false);
     }
@@ -137,6 +146,7 @@ export default function CVAnalysis() {
   const [page, setPage] = useState(1);
   const [pages, setPages] = useState(1);
   const [selected, setSelected] = useState(null);
+  const toast = useToast();
 
   const fetchCVs = useCallback(async () => {
     setLoading(true);
@@ -149,6 +159,7 @@ export default function CVAnalysis() {
       setTotal(res.data.total);
       setPages(res.data.pages);
     } catch {
+      toast.error('No se pudieron cargar los CVs. Verificá tu conexión.');
     } finally {
       setLoading(false);
     }
@@ -196,15 +207,17 @@ export default function CVAnalysis() {
       </Card>
 
       {loading ? (
-        <div className={styles.loadingState}>
-          <div className={styles.spinner} />
-          <span>Cargando CVs...</span>
+        <div className={styles.grid}>
+          {Array.from({ length: 8 }).map((_, i) => <CVCardSkeleton key={i} />)}
         </div>
       ) : cvs.length === 0 ? (
-        <div className={styles.emptyState}>
-          <span>📭</span>
-          <span>No se encontraron CVs</span>
-        </div>
+        <Card>
+          <EmptyState
+            preset={search || statusFilter ? 'search' : 'cvs'}
+            action={search || statusFilter ? () => { setSearch(''); setStatusFilter(''); } : undefined}
+            actionLabel={search || statusFilter ? 'Limpiar filtros' : undefined}
+          />
+        </Card>
       ) : (
         <>
           <div className={styles.grid}>

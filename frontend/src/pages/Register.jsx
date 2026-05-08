@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { useToast } from '../components/Toast';
 import styles from './Auth.module.css';
 
 export default function Register() {
   const { register } = useAuth();
   const navigate = useNavigate();
+  const toast = useToast();
   const [form, setForm] = useState({ name: '', email: '', password: '', confirmPassword: '', role: 'recruiter', department: 'Recursos Humanos' });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -16,17 +18,22 @@ export default function Register() {
     e.preventDefault();
     setError('');
     if (form.password !== form.confirmPassword) {
-      return setError('Las contraseñas no coinciden.');
+      const msg = 'Las contraseñas no coinciden.';
+      setError(msg); toast.error(msg); return;
     }
     if (form.password.length < 6) {
-      return setError('La contraseña debe tener al menos 6 caracteres.');
+      const msg = 'La contraseña debe tener al menos 6 caracteres.';
+      setError(msg); toast.error(msg); return;
     }
     setLoading(true);
     try {
       await register({ name: form.name, email: form.email, password: form.password, role: form.role, department: form.department });
+      toast.success('¡Cuenta creada exitosamente! Bienvenido/a.');
       navigate('/dashboard');
     } catch (err) {
-      setError(err.response?.data?.message || 'Error al registrarse.');
+      const msg = err.response?.data?.message || 'Error al registrarse. Intentá nuevamente.';
+      setError(msg);
+      toast.error(msg);
     } finally {
       setLoading(false);
     }
