@@ -1,4 +1,4 @@
-# TalentStream AI — Plataforma de Recursos Humanos con Inteligencia Artificial
+# GestiónRH — Plataforma de Recursos Humanos con Inteligencia Artificial
 
 > Una herramienta moderna para gestionar postulantes, analizar CVs y administrar pruebas de selección de personal — todo en un solo lugar.
 
@@ -6,7 +6,7 @@
 
 ## ¿Qué es esto?
 
-TalentStream AI es una aplicación web que podés abrir en tu navegador (como si fuera Gmail o Instagram, pero en tu propia computadora). Está pensada para equipos de Recursos Humanos que quieren:
+GestiónRH es una aplicación web que podés abrir en tu navegador (como si fuera Gmail o Instagram, pero en tu propia computadora). Está pensada para equipos de Recursos Humanos que quieren:
 
 - Ver y analizar los CVs de candidatos con puntaje automático
 - Asignar y revisar pruebas psicotécnicas
@@ -103,9 +103,9 @@ docker compose up --build
 Cuando veas algo parecido a esto, significa que está listo:
 
 ```
-talentstream_backend   | TalentStream API corriendo en puerto 5000
-talentstream_backend   | MongoDB conectado
-talentstream_backend   | Datos de ejemplo cargados exitosamente.
+gestionrh_backend   | GestiónRH API corriendo en puerto 5000
+gestionrh_backend   | MongoDB conectado
+gestionrh_backend   | Datos de ejemplo cargados exitosamente.
 ```
 
 ### Paso 5: Abrí la aplicación en tu navegador
@@ -126,7 +126,7 @@ Podés entrar directamente con estos datos de prueba:
 
 | | |
 |---|---|
-| **Email** | demo@talentstream.ai |
+| **Email** | demo@gestionrh.app |
 | **Contraseña** | Demo1234 |
 
 O hacé clic en el botón **"Usar cuenta demo"** que aparece en la pantalla de inicio de sesión.

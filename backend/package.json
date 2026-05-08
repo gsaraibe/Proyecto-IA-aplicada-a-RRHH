@@ -1,7 +1,7 @@
 {
-  "name": "talentstream-backend",
+  "name": "gestionrh-backend",
   "version": "1.0.0",
-  "description": "TalentStream AI - Backend API",
+  "description": "GestiónRH - Backend API",
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",

@@ -27,7 +27,7 @@ export default function ForgotPassword() {
         <div className={styles.brandContent}>
           <div className={styles.brandLogo}>
             <span className={styles.brandIcon}>⚡</span>
-            <span className={styles.brandName}>TalentStream<span>AI</span></span>
+            <span className={styles.brandName}>GestiónRH</span>
           </div>
           <h2 className={styles.brandTagline}>
             Recuperá el acceso<br />
@@ -96,7 +96,7 @@ export default function ForgotPassword() {
               <div className={fpStyles.successIcon}>📬</div>
               <h2>¡Revisá tu correo!</h2>
               <p>
-                Si la dirección <strong>{email}</strong> está registrada en TalentStream AI,
+                Si la dirección <strong>{email}</strong> está registrada en GestiónRH,
                 vas a recibir un email con el enlace para crear una nueva contraseña.
               </p>
               <div className={fpStyles.tips}>

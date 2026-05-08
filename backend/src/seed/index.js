@@ -12,7 +12,7 @@ const seedDatabase = async () => {
 
     const demoUser = await User.create({
       name: 'Demo Usuario',
-      email: 'demo@talentstream.ai',
+      email: 'demo@gestionrh.app',
       password: 'Demo1234',
       role: 'admin',
       department: 'Recursos Humanos',
@@ -20,8 +20,8 @@ const seedDatabase = async () => {
     });
 
     await User.create([
-      { name: 'Ana García', email: 'ana@talentstream.ai', password: 'Pass1234', role: 'manager', department: 'Tecnología' },
-      { name: 'Carlos López', email: 'carlos@talentstream.ai', password: 'Pass1234', role: 'recruiter', department: 'Recursos Humanos' },
+      { name: 'Ana García', email: 'ana@gestionrh.app', password: 'Pass1234', role: 'manager', department: 'Tecnología' },
+      { name: 'Carlos López', email: 'carlos@gestionrh.app', password: 'Pass1234', role: 'recruiter', department: 'Recursos Humanos' },
     ]);
 
     const cvs = [

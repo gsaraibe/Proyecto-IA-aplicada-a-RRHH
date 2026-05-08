@@ -32,7 +32,7 @@ export default function Layout() {
           {!collapsed && (
             <div className={styles.logo}>
               <span className={styles.logoIcon}>⚡</span>
-              <span className={styles.logoText}>TalentStream<span className={styles.logoAi}>AI</span></span>
+              <span className={styles.logoText}>GestiónRH</span>
             </div>
           )}
           <button className={styles.collapseBtn} onClick={() => setCollapsed(!collapsed)}>

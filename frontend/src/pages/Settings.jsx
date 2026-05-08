@@ -34,7 +34,7 @@ export default function Settings() {
 
   return (
     <div className={styles.page}>
-      <PageHeader title="Configuración" subtitle="Personalizá tu experiencia en TalentStream AI" />
+      <PageHeader title="Configuración" subtitle="Personalizá tu experiencia en GestiónRH" />
 
       <div className={styles.layout}>
         <Card className={styles.sidebar}>

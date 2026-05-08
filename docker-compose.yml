@@ -1,18 +1,18 @@
 services:
   mongodb:
     image: mongo:7
-    container_name: talentstream_db
+    container_name: gestionrh_db
     restart: unless-stopped
     environment:
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: adminpass
-      MONGO_INITDB_DATABASE: talentstream
+      MONGO_INITDB_DATABASE: gestionrh
     ports:
       - '27017:27017'
     volumes:
       - mongo_data:/data/db
     networks:
-      - talentstream_net
+      - gestionrh_net
     healthcheck:
       test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
       interval: 10s
@@ -23,19 +23,19 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    container_name: talentstream_backend
+    container_name: gestionrh_backend
     restart: unless-stopped
     env_file:
       - .env
     environment:
-      MONGO_URI: mongodb://admin:adminpass@mongodb:27017/talentstream?authSource=admin
+      MONGO_URI: mongodb://admin:adminpass@mongodb:27017/gestionrh?authSource=admin
     ports:
       - '5000:5000'
     depends_on:
       mongodb:
         condition: service_healthy
     networks:
-      - talentstream_net
+      - gestionrh_net
     volumes:
       - ./backend:/app
       - /app/node_modules
@@ -44,18 +44,18 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    container_name: talentstream_frontend
+    container_name: gestionrh_frontend
     restart: unless-stopped
     ports:
       - '3000:80'
     depends_on:
       - backend
     networks:
-      - talentstream_net
+      - gestionrh_net
 
 volumes:
   mongo_data:
 
 networks:
-  talentstream_net:
+  gestionrh_net:
     driver: bridge

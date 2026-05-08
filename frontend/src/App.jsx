@@ -18,7 +18,7 @@ const AppLoader = () => (
   <div className={styles.appLoader}>
     <div className={styles.loaderContent}>
       <span className={styles.loaderIcon}>⚡</span>
-      <span className={styles.loaderName}>TalentStream AI</span>
+      <span className={styles.loaderName}>GestiónRH</span>
       <div className={styles.loaderBar}><div className={styles.loaderFill} /></div>
     </div>
   </div>

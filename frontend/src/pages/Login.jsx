@@ -32,7 +32,7 @@ export default function Login() {
   };
 
   const fillDemo = () => {
-    setForm({ email: 'demo@talentstream.ai', password: 'Demo1234' });
+    setForm({ email: 'demo@gestionrh.app', password: 'Demo1234' });
     toast.info('Datos demo cargados. Hacé clic en Ingresar.');
   };
 
@@ -42,7 +42,7 @@ export default function Login() {
         <div className={styles.brandContent}>
           <div className={styles.brandLogo}>
             <span className={styles.brandIcon}>⚡</span>
-            <span className={styles.brandName}>TalentStream<span>AI</span></span>
+            <span className={styles.brandName}>GestiónRH</span>
           </div>
           <h2 className={styles.brandTagline}>
             Transformá tu proceso de<br />

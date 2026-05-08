@@ -31,4 +31,4 @@ app.use((err, req, res, next) => {
 });
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`TalentStream API corriendo en puerto ${PORT}`));
+app.listen(PORT, () => console.log(`GestiónRH API corriendo en puerto ${PORT}`));

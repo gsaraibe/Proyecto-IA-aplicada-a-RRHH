@@ -45,7 +45,7 @@ export default function Register() {
         <div className={styles.brandContent}>
           <div className={styles.brandLogo}>
             <span className={styles.brandIcon}>⚡</span>
-            <span className={styles.brandName}>TalentStream<span>AI</span></span>
+            <span className={styles.brandName}>GestiónRH</span>
           </div>
           <h2 className={styles.brandTagline}>
             Empezá hoy a gestionar<br />
