@@ -1,0 +1,209 @@
+.page {
+  padding: 28px 32px;
+  max-width: 1400px;
+}
+
+.loading, .errorState {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  height: 60vh;
+  color: var(--text-secondary);
+  font-size: 15px;
+}
+
+.spinner {
+  width: 24px;
+  height: 24px;
+  border: 3px solid var(--border);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.chartsRow {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.tablesRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.chartCard, .tableCard {
+  padding: 20px;
+}
+
+.chartCardSm {
+  padding: 20px;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.cardHeader h3 {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.cardBadge {
+  font-size: 11px;
+  font-weight: 500;
+  background: var(--primary-bg);
+  color: var(--primary);
+  padding: 2px 8px;
+  border-radius: 20px;
+}
+
+.viewAll {
+  font-size: 13px;
+  color: var(--primary);
+  font-weight: 500;
+}
+
+.viewAll:hover { text-decoration: underline; }
+
+.pieLegend {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.pieLegendItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.pieDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.pieCount {
+  margin-left: auto;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.positionList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.positionItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.positionRank {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--primary-bg);
+  color: var(--primary);
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.positionInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.positionName {
+  font-size: 13px;
+  color: var(--text-primary);
+  font-weight: 500;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.positionCount {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--primary);
+  min-width: 20px;
+  text-align: right;
+}
+
+.tableWrap { overflow-x: auto; }
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+}
+
+.table th {
+  text-align: left;
+  padding: 8px 12px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+}
+
+.table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #F9FAFB;
+  vertical-align: middle;
+}
+
+.table tr:last-child td { border-bottom: none; }
+
+.table tr:hover td { background: #F9FAFB; }
+
+.candidateName {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.position {
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+@media (max-width: 1200px) {
+  .chartsRow, .tablesRow { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+  .page { padding: 16px; }
+  .statsGrid { grid-template-columns: repeat(2, 1fr); }
+}

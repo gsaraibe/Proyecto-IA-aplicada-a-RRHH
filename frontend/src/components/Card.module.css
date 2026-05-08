@@ -1,0 +1,96 @@
+.card {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.statCard {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  padding: 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.statCard:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+.statCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--primary);
+}
+
+.statCard.success::before { background: var(--success); }
+.statCard.warning::before { background: var(--warning); }
+.statCard.danger::before { background: var(--danger); }
+.statCard.info::before { background: var(--info); }
+
+.statIcon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: var(--primary-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.statCard.success .statIcon { background: var(--success-bg); }
+.statCard.warning .statIcon { background: var(--warning-bg); }
+.statCard.danger .statIcon { background: var(--danger-bg); }
+.statCard.info .statIcon { background: var(--info-bg); }
+
+.statBody {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.statValue {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.statLabel {
+  font-size: 13px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.statSubtitle {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.delta {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 20px;
+  align-self: flex-start;
+  flex-shrink: 0;
+}
+
+.delta.up { background: var(--success-bg); color: var(--success); }
+.delta.down { background: var(--danger-bg); color: var(--danger); }
