@@ -2,6 +2,7 @@ const User = require('../models/User');
 const Employee = require('../models/Employee');
 const Job = require('../models/Job');
 const Candidate = require('../models/Candidate');
+const AnalisisCV = require('../models/AnalisisCV');
 
 const seedDB = async () => {
   try {
@@ -190,6 +191,63 @@ const seedDB = async () => {
         status: 'screening', score: 68, experience: 1,
         skills: ['Figma', 'Illustrator', 'Design Thinking'],
         source: 'web', notes: 'Portfolio prometedor para su nivel de experiencia.',
+      },
+    ]);
+
+    await AnalisisCV.insertMany([
+      {
+        nombre: 'Agustín Pereyra',
+        puesto: 'Desarrollador Full Stack Senior',
+        score: 87,
+        estado: 'recomendado',
+        resumenIA: 'Candidato con sólida experiencia en React y Node.js. Historial en startups de tecnología. Comunicación clara y perfil proactivo. Se recomienda avanzar a entrevista técnica.',
+        fecha: new Date('2025-04-10'),
+        usuarioId: admin._id,
+      },
+      {
+        nombre: 'Florencia Vidal',
+        puesto: 'Diseñadora UX/UI Junior',
+        score: 72,
+        estado: 'recomendado',
+        resumenIA: 'Portfolio con proyectos variados. Maneja Figma y Adobe XD con fluidez. Poca experiencia en Design Systems pero muestra potencial de crecimiento. Apta para puesto junior.',
+        fecha: new Date('2025-04-12'),
+        usuarioId: admin._id,
+      },
+      {
+        nombre: 'Ramiro Sosa',
+        puesto: 'Desarrollador Full Stack Senior',
+        score: 55,
+        estado: 'pendiente',
+        resumenIA: 'Experiencia principalmente en Vue.js y PHP. El stack no se alinea completamente con los requerimientos. Requiere evaluación adicional para determinar capacidad de adaptación.',
+        fecha: new Date('2025-04-15'),
+        usuarioId: admin._id,
+      },
+      {
+        nombre: 'Julieta Núñez',
+        puesto: 'Gerente de Marketing Digital',
+        score: 94,
+        estado: 'recomendado',
+        resumenIA: 'Perfil excepcional. Ocho años de experiencia liderando equipos de marketing. Dominio comprobado de Google Ads, Meta y analítica avanzada. Candidata ideal para el puesto.',
+        fecha: new Date('2025-04-18'),
+        usuarioId: admin._id,
+      },
+      {
+        nombre: 'Tomás Aguirre',
+        puesto: 'Diseñador UX/UI Junior',
+        score: 38,
+        estado: 'descartado',
+        resumenIA: 'Portfolio no refleja los estándares requeridos. Conocimiento de Figma muy básico. Sin experiencia en proyectos reales documentados. No se recomienda continuar el proceso.',
+        fecha: new Date('2025-04-20'),
+        usuarioId: admin._id,
+      },
+      {
+        nombre: 'Micaela Blanco',
+        puesto: 'Desarrolladora Full Stack Senior',
+        score: 96,
+        estado: 'recomendado',
+        resumenIA: 'Candidata destacada. Siete años de experiencia en React, Node.js y AWS. Contribuciones open source relevantes. Alta capacidad técnica y liderazgo. Prioridad máxima para contratación.',
+        fecha: new Date('2025-04-22'),
+        usuarioId: admin._id,
       },
     ]);
 
