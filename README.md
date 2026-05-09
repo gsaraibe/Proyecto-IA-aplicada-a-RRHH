@@ -4,53 +4,73 @@ Plataforma inteligente de gestión de Recursos Humanos con IA integrada.
 
 ---
 
-## ¿Qué incluye esta aplicación?
+## ¿Qué incluye?
 
 - **Login y registro** de usuarios
 - **Dashboard** con estadísticas en tiempo real
-- **Gestión de empleados** (agregar, editar, buscar, filtrar)
-- **Gestión de vacantes** (puestos de trabajo abiertos)
-- **Pipeline de candidatos** (seguimiento de postulantes)
+- **Gestión de empleados** — agregar, buscar, filtrar
+- **Gestión de vacantes** — crear y administrar puestos
+- **Pipeline de candidatos** — seguimiento de postulantes
 - **Perfil de usuario** editable
 - **Datos de ejemplo** precargados para probar todo
 
 ---
 
-## ¿Cómo levantarla?
+## Antes de empezar — instalá Docker Desktop
 
-### Paso 1 — Abrí una terminal
+Docker Desktop es el programa que hace funcionar toda la aplicación. Solo hay que instalarlo una vez.
 
-Presioná `Ctrl + Alt + T` en tu teclado. Se abre una ventana negra con texto: eso es la terminal.
+### ¿Cómo instalarlo?
 
-### Paso 2 — Entrá a la carpeta del proyecto
+1. Abrí tu navegador y entrá a: **https://www.docker.com/products/docker-desktop**
+2. Hacé clic en **"Download for Windows"**
+3. Abrí el archivo que descargaste y seguí los pasos de instalación
+4. Reiniciá tu computadora cuando te lo pida
+5. Buscá "Docker Desktop" en el menú Inicio y abrilo
 
-Escribí este comando exacto y presioná Enter:
+> Sabés que está listo cuando ves un ícono de ballena (🐳) en la barra de tareas (abajo a la derecha) y **no se está moviendo**.
 
+---
+
+## ¿Cómo levantar la aplicación?
+
+### Paso 1 — Abrí Docker Desktop
+
+Buscalo en el menú Inicio y abrilo. Esperá que el ícono de la ballena deje de moverse.
+
+### Paso 2 — Abrí PowerShell
+
+Presioná las teclas `Windows + R` al mismo tiempo, escribí `powershell` y presioná Enter.
+
+### Paso 3 — Entrá a la carpeta del proyecto
+
+Copiá y pegá este comando en PowerShell y presioná Enter:
+
+```powershell
+cd $env:USERPROFILE\Proyecto-IA-aplicada-a-RRHH
 ```
-cd ~/Proyecto-IA-aplicada-a-RRHH
+
+### Paso 4 — Ejecutá el script de inicio
+
+Copiá y pegá este comando y presioná Enter:
+
+```powershell
+.\start.ps1
 ```
 
-### Paso 3 — Ejecutá el script de inicio
+> **La primera vez** tarda entre 5 y 10 minutos porque descarga todo lo necesario.
+> **Las veces siguientes** tarda menos de 1 minuto.
 
-Escribí este comando y presioná Enter:
+### Paso 5 — Abrí la aplicación
 
-```
-./start.sh
-```
-
-> La primera vez tarda entre 5 y 10 minutos porque descarga todo lo necesario.
-> Las veces siguientes tarda menos de 1 minuto.
-
-### Paso 4 — Abrí la aplicación en tu navegador
-
-Cuando veas en la terminal el mensaje:
+Cuando veas en la ventana de PowerShell:
 
 ```
 ✅ MongoDB conectado
 🚀 TalentAI Backend corriendo en puerto 5000
 ```
 
-Abrí tu navegador (Chrome, Firefox, etc.) y entrá a:
+Abrí **Chrome** o **Edge** y entrá a:
 
 ```
 http://localhost:3000
@@ -58,7 +78,7 @@ http://localhost:3000
 
 ---
 
-## Usuario demo para probar
+## Usuario de prueba
 
 | Campo | Valor |
 |-------|-------|
@@ -71,32 +91,47 @@ En la pantalla de login hay un botón **"Completar automáticamente"** que carga
 
 ## ¿Cómo cerrar la aplicación?
 
-En la terminal donde está corriendo, presioná `Ctrl + C`. Los datos quedan guardados.
+En la ventana de PowerShell donde corre la aplicación, presioná:
+
+```
+Ctrl + C
+```
+
+Los datos quedan guardados para la próxima vez.
 
 ---
 
-## ¿Cómo volver a levantarla la próxima vez?
+## ¿Cómo volver a levantarla?
 
-Exactamente igual: abrí la terminal, entrá a la carpeta y ejecutá `./start.sh`.
+Exactamente igual que siempre:
+1. Abrí Docker Desktop
+2. Abrí PowerShell
+3. Ejecutá `.\start.ps1`
 
 ---
 
 ## Si algo no funciona
 
-1. Verificá que el puerto 3000 no esté siendo usado por otro programa
-2. Intentá apagar y volver a levantar: en la terminal presioná `Ctrl + C`, luego volvé a ejecutar `./start.sh`
-3. Si Docker da error, cerrá la terminal, abrí una nueva y volvé al Paso 2
+**Error "Docker no está corriendo":**
+→ Abrí Docker Desktop desde el menú Inicio y esperá que cargue
+
+**La página no abre en el navegador:**
+→ Esperá un poco más y probá de nuevo. La primera vez puede tardar más
+
+**Error desconocido:**
+→ Cerrá la ventana de PowerShell, volvé a abrirla y ejecutá `.\start.ps1` de nuevo
 
 ---
 
-## Estructura del proyecto (para curiosos)
+## Estructura del proyecto
 
 ```
 Proyecto-IA-aplicada-a-RRHH/
-├── backend/            → El "cerebro" que procesa los datos
 ├── frontend/           → Lo que ves en el navegador
-├── docker-compose.yml  → El archivo que conecta todo
-├── start.sh            → Script para levantar todo con un comando
+├── backend/            → El servidor que procesa todo
+├── docker-compose.yml  → Conecta todas las partes
+├── start.ps1           → Script de inicio para Windows ← usá este
+├── start.sh            → Script de inicio para Linux/Mac
 └── README.md           → Este archivo
 ```
 
