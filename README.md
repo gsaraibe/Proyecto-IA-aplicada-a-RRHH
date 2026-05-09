@@ -1,57 +1,56 @@
-# 🚀 TalentAI — IA aplicada a RRHH
+# TalentAI — Gestión de Recursos Humanos
 
-Plataforma inteligente de gestión de Recursos Humanos con IA integrada.
-
----
-
-## ¿Qué incluye esta aplicación?
-
-- **Login y registro** de usuarios
-- **Dashboard** con estadísticas en tiempo real
-- **Gestión de empleados** (agregar, editar, buscar, filtrar)
-- **Gestión de vacantes** (puestos de trabajo abiertos)
-- **Pipeline de candidatos** (seguimiento de postulantes)
-- **Perfil de usuario** editable
-- **Datos de ejemplo** precargados para probar todo
+Aplicación web completa para gestionar empleados, puestos de trabajo y candidatos. Incluye dashboard, autenticación y datos de ejemplo listos para usar.
 
 ---
 
-## Requisitos previos
+## ¿Qué necesitás antes de empezar?
 
-Necesitás tener **Docker Desktop** instalado en tu computadora.
+Solo necesitás tener instalado **Docker Desktop**. Nada más.
 
-> Si no lo tenés, descargalo desde: https://www.docker.com/products/docker-desktop
+- **Descargar Docker Desktop para Windows:** https://www.docker.com/products/docker-desktop/
+- Después de instalarlo, abrilo y esperá a que diga "Docker Desktop is running"
 
 ---
 
-## ¿Cómo levantarlo por primera vez?
+## Cómo correr la aplicación (Windows)
 
-### Paso 1 — Abrí una terminal
+### Paso 1 — Limpiar Docker (solo la primera vez)
 
-**En Linux/Mac:** Buscá "Terminal" en tu computadora y abrila.
-
-### Paso 2 — Entrá a la carpeta del proyecto
-
-Escribí este comando exacto y presioná Enter:
+Abrí el **Símbolo del sistema** (buscá "cmd" en el menú inicio) y escribí:
 
 ```
-cd ~/Proyecto-IA-aplicada-a-RRHH
+docker system prune -a
 ```
 
-### Paso 3 — Levantá la aplicación
+Cuando pregunte si estás seguro, escribí `y` y presioná Enter.
 
-Escribí este comando y presioná Enter:
+### Paso 2 — Descargar el proyecto
+
+En la misma ventana, escribí estos comandos uno por uno:
+
+```
+cd %USERPROFILE%
+git clone https://github.com/gsaraibe/Proyecto-IA-aplicada-a-RRHH.git
+cd Proyecto-IA-aplicada-a-RRHH
+```
+
+### Paso 3 — Iniciar la aplicación
 
 ```
 docker compose up --build
 ```
 
-> ⚠️ La primera vez tarda entre 3 y 8 minutos porque descarga los programas necesarios.
-> Las veces siguientes tarda menos de 1 minuto.
+La primera vez tarda entre **5 y 10 minutos**. Las veces siguientes tarda 1-2 minutos.
 
-### Paso 4 — Abrí la aplicación en tu navegador
+Cuando veas este mensaje la app está lista:
+```
+TalentAI Backend corriendo en puerto 5000
+```
 
-Cuando veas en la terminal el mensaje `TalentAI corriendo en puerto 3000`, abrí tu navegador y andá a:
+### Paso 4 — Abrir en el navegador
+
+Abrí Chrome o Edge y escribí:
 
 ```
 http://localhost:3000
@@ -59,59 +58,49 @@ http://localhost:3000
 
 ---
 
-## Usuario demo para probar
+## Datos de acceso para probar
 
 | Campo | Valor |
-|-------|-------|
+|---|---|
 | Email | demo@talentai.com |
 | Contraseña | Demo123! |
 
 ---
 
-## ¿Cómo cerrar la aplicación?
+## Cómo apagar la aplicación
 
-En la terminal donde corre la aplicación, presioná:
+En la terminal donde está corriendo, presioná **Ctrl + C**.
 
-```
-Ctrl + C
-```
-
-Y luego escribí:
+Para volver a encenderla la próxima vez:
 
 ```
-docker compose down
-```
-
----
-
-## ¿Cómo volver a levantarla después?
-
-La próxima vez no hace falta el `--build`. Simplemente usá:
-
-```
+cd %USERPROFILE%\Proyecto-IA-aplicada-a-RRHH
 docker compose up
 ```
 
 ---
 
-## Estructura del proyecto (para curiosos)
+## ¿Qué tiene la aplicación?
 
-```
-Proyecto-IA-aplicada-a-RRHH/
-├── backend/        → El "cerebro" que procesa los datos
-├── frontend/       → Lo que ves en el navegador
-├── docker-compose.yml → El archivo que conecta todo
-└── README.md       → Este archivo
-```
-
----
-
-## ¿Algo no funciona?
-
-1. Asegurate de que Docker Desktop esté abierto y corriendo
-2. Intentá apagar y volver a levantar: `docker compose down` y luego `docker compose up`
-3. Si el puerto 3000 está ocupado, cerrá otros programas que lo usen
+- **Dashboard** con resumen de empleados, puestos y candidatos
+- **Empleados** con búsqueda y filtros
+- **Puestos de trabajo** con gestión de vacantes
+- **Candidatos** con seguimiento del proceso de selección
+- **Perfil de usuario**
+- **Login / Registro / Recuperar contraseña**
 
 ---
 
-*Construido con Next.js · Node.js · MongoDB · Docker*
+## Solución de problemas
+
+**"No configuration file provided"**
+Estás en la carpeta equivocada. Escribí `cd %USERPROFILE%\Proyecto-IA-aplicada-a-RRHH` y volvé a intentar.
+
+**"exec format error" o errores al construir**
+Ejecutá `docker system prune -a` y volvé a correr `docker compose up --build`.
+
+**La app tarda mucho**
+Es normal la primera vez. Esperá el mensaje de confirmación en la terminal.
+
+**El navegador muestra error**
+Esperá un minuto más. La aplicación todavía está iniciando.

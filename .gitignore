@@ -1,7 +1,5 @@
 # Dependencias
 node_modules/
-.pnp
-.pnp.js
 
 # Build de Next.js
 frontend/.next/
@@ -18,13 +16,9 @@ npm-debug.log*
 
 # Sistema
 .DS_Store
-.DS_Store?
 Thumbs.db
 
 # Editor
 .vscode/
 .idea/
 *.swp
-
-# Docker
-.dockerignore
