@@ -1,4 +1,4 @@
-# 🚀 TalentAI — IA aplicada a RRHH
+# TalentAI — IA aplicada a RRHH
 
 Plataforma inteligente de gestión de Recursos Humanos con IA integrada.
 
@@ -16,19 +16,11 @@ Plataforma inteligente de gestión de Recursos Humanos con IA integrada.
 
 ---
 
-## Requisitos previos
-
-Necesitás tener **Docker Desktop** instalado en tu computadora.
-
-> Si no lo tenés, descargalo desde: https://www.docker.com/products/docker-desktop
-
----
-
-## ¿Cómo levantarlo por primera vez?
+## ¿Cómo levantarla?
 
 ### Paso 1 — Abrí una terminal
 
-**En Linux/Mac:** Buscá "Terminal" en tu computadora y abrila.
+Presioná `Ctrl + Alt + T` en tu teclado. Se abre una ventana negra con texto: eso es la terminal.
 
 ### Paso 2 — Entrá a la carpeta del proyecto
 
@@ -38,20 +30,27 @@ Escribí este comando exacto y presioná Enter:
 cd ~/Proyecto-IA-aplicada-a-RRHH
 ```
 
-### Paso 3 — Levantá la aplicación
+### Paso 3 — Ejecutá el script de inicio
 
 Escribí este comando y presioná Enter:
 
 ```
-docker compose up --build
+./start.sh
 ```
 
-> ⚠️ La primera vez tarda entre 3 y 8 minutos porque descarga los programas necesarios.
+> La primera vez tarda entre 5 y 10 minutos porque descarga todo lo necesario.
 > Las veces siguientes tarda menos de 1 minuto.
 
 ### Paso 4 — Abrí la aplicación en tu navegador
 
-Cuando veas en la terminal el mensaje `TalentAI corriendo en puerto 3000`, abrí tu navegador y andá a:
+Cuando veas en la terminal el mensaje:
+
+```
+✅ MongoDB conectado
+🚀 TalentAI Backend corriendo en puerto 5000
+```
+
+Abrí tu navegador (Chrome, Firefox, etc.) y entrá a:
 
 ```
 http://localhost:3000
@@ -66,31 +65,27 @@ http://localhost:3000
 | Email | demo@talentai.com |
 | Contraseña | Demo123! |
 
+En la pantalla de login hay un botón **"Completar automáticamente"** que carga estos datos por vos.
+
 ---
 
 ## ¿Cómo cerrar la aplicación?
 
-En la terminal donde corre la aplicación, presioná:
-
-```
-Ctrl + C
-```
-
-Y luego escribí:
-
-```
-docker compose down
-```
+En la terminal donde está corriendo, presioná `Ctrl + C`. Los datos quedan guardados.
 
 ---
 
-## ¿Cómo volver a levantarla después?
+## ¿Cómo volver a levantarla la próxima vez?
 
-La próxima vez no hace falta el `--build`. Simplemente usá:
+Exactamente igual: abrí la terminal, entrá a la carpeta y ejecutá `./start.sh`.
 
-```
-docker compose up
-```
+---
+
+## Si algo no funciona
+
+1. Verificá que el puerto 3000 no esté siendo usado por otro programa
+2. Intentá apagar y volver a levantar: en la terminal presioná `Ctrl + C`, luego volvé a ejecutar `./start.sh`
+3. Si Docker da error, cerrá la terminal, abrí una nueva y volvé al Paso 2
 
 ---
 
@@ -98,19 +93,12 @@ docker compose up
 
 ```
 Proyecto-IA-aplicada-a-RRHH/
-├── backend/        → El "cerebro" que procesa los datos
-├── frontend/       → Lo que ves en el navegador
-├── docker-compose.yml → El archivo que conecta todo
-└── README.md       → Este archivo
+├── backend/            → El "cerebro" que procesa los datos
+├── frontend/           → Lo que ves en el navegador
+├── docker-compose.yml  → El archivo que conecta todo
+├── start.sh            → Script para levantar todo con un comando
+└── README.md           → Este archivo
 ```
-
----
-
-## ¿Algo no funciona?
-
-1. Asegurate de que Docker Desktop esté abierto y corriendo
-2. Intentá apagar y volver a levantar: `docker compose down` y luego `docker compose up`
-3. Si el puerto 3000 está ocupado, cerrá otros programas que lo usen
 
 ---
 
