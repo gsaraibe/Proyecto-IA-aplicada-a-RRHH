@@ -17,6 +17,9 @@ const STATUS_CONFIG = {
   'part-time': { label: 'Medio tiempo',   classes: 'bg-purple-50 text-purple-700 ring-purple-200' },
   remote:    { label: 'Remoto',        classes: 'bg-teal-50    text-teal-700    ring-teal-200'   },
   hybrid:    { label: 'Híbrido',       classes: 'bg-blue-50    text-blue-700    ring-blue-200'   },
+  'Recomendado': { label: 'Recomendado',  classes: 'bg-emerald-50 text-emerald-700 ring-emerald-200' },
+  'En revisión': { label: 'En revisión',  classes: 'bg-amber-50   text-amber-700   ring-amber-200'  },
+  'Descartado':  { label: 'Descartado',   classes: 'bg-red-50     text-red-700     ring-red-200'    },
 };
 
 export default function Badge({ status, label, className = '' }) {

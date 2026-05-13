@@ -10,6 +10,8 @@ const employeeRoutes = require('./routes/employees');
 const jobRoutes = require('./routes/jobs');
 const candidateRoutes = require('./routes/candidates');
 const dashboardRoutes = require('./routes/dashboard');
+const hrIntelligenceRoutes = require('./routes/hr-intelligence');
+const onboardingRoutes = require('./routes/onboarding');
 
 const app = express();
 
@@ -27,6 +29,8 @@ app.use('/api/employees', employeeRoutes);
 app.use('/api/jobs', jobRoutes);
 app.use('/api/candidates', candidateRoutes);
 app.use('/api/dashboard', dashboardRoutes);
+app.use('/api/hr-intelligence', hrIntelligenceRoutes);
+app.use('/api/onboarding', onboardingRoutes);
 
 app.get('/api/health', (req, res) => res.json({ status: 'ok', app: 'TalentAI', timestamp: new Date() }));
 
