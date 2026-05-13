@@ -13,6 +13,8 @@ Plataforma inteligente de gestión de Recursos Humanos con IA integrada.
 - **Pipeline de candidatos** (seguimiento de postulantes)
 - **Perfil de usuario** editable
 - **Datos de ejemplo** precargados para probar todo
+- **Análisis de CVs con IA** — subí un CV (PDF, Word, imagen o ZIP con varios CVs), ingresá la descripción del puesto y la IA analiza las coincidencias, gaps, score y recomendación
+- **Planes de onboarding con IA** — ingresá el nombre, puesto y área de un nuevo empleado y la IA genera un plan de 30 días con tareas y checkboxes
 
 ---
 
@@ -21,6 +23,26 @@ Plataforma inteligente de gestión de Recursos Humanos con IA integrada.
 Necesitás tener **Docker Desktop** instalado en tu computadora.
 
 > Si no lo tenés, descargalo desde: https://www.docker.com/products/docker-desktop
+
+### Clave de API de Anthropic (para las funciones de IA)
+
+Las funciones de análisis de CVs y planes de onboarding requieren una clave de API de Anthropic (Claude).
+
+1. Creá una cuenta en https://console.anthropic.com
+2. Generá una API key
+3. Antes de correr la aplicación, abrí una terminal y ejecutá este comando reemplazando `tu-clave-aqui` con tu clave:
+
+**En Windows (CMD):**
+```
+set ANTHROPIC_API_KEY=tu-clave-aqui
+```
+
+**En Mac/Linux:**
+```
+export ANTHROPIC_API_KEY=tu-clave-aqui
+```
+
+> Sin esta clave el resto de la aplicación funciona igualmente. Solo las pantallas de "Análisis de CVs" y "Pruebas de HR" necesitan la clave.
 
 ---
 
