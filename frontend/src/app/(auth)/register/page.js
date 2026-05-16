@@ -17,7 +17,7 @@ export default function RegisterPage() {
   const [showPass, setShowPass] = useState(false);
 
   useEffect(() => {
-    if (!loading && user) router.push('/dashboard');
+    if (!loading && user) router.push('/menu');
   }, [user, loading, router]);
 
   const handleSubmit = async (e) => {
@@ -59,7 +59,7 @@ export default function RegisterPage() {
           <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-500 to-violet-600 shadow-xl mb-4">
             <Sparkles size={28} className="text-white" />
           </div>
-          <h1 className="text-3xl font-bold text-white">TalentAI</h1>
+          <h1 className="text-3xl font-bold text-white">CH Assist</h1>
           <p className="text-slate-400 mt-1 text-sm">Plataforma inteligente de RRHH</p>
         </div>
 

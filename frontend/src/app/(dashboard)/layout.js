@@ -21,7 +21,7 @@ export default function DashboardLayout({ children }) {
       <div className="flex items-center justify-center h-screen bg-slate-50">
         <div className="flex flex-col items-center gap-3 text-slate-500">
           <Loader size="lg" />
-          <p className="text-sm">Cargando TalentAI...</p>
+          <p className="text-sm">Cargando CH Assist...</p>
         </div>
       </div>
     );

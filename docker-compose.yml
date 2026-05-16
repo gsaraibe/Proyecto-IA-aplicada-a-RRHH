@@ -3,11 +3,11 @@ services:
     image: mongo:7
     restart: unless-stopped
     environment:
-      MONGO_INITDB_DATABASE: talentai
+      MONGO_INITDB_DATABASE: chassist
     volumes:
       - mongodb_data:/data/db
     networks:
-      - talentai-network
+      - chassist-network
     healthcheck:
       test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
       interval: 10s
@@ -25,15 +25,16 @@ services:
     environment:
       NODE_ENV: production
       PORT: 5000
-      MONGODB_URI: mongodb://mongodb:27017/talentai
-      JWT_SECRET: talentai-secret-key-2024-cambiar-en-produccion
+      MONGODB_URI: mongodb://mongodb:27017/chassist
+      JWT_SECRET: chassist-secret-key-cambiar-en-produccion-usar-cadena-larga
       JWT_EXPIRES_IN: 7d
       CORS_ORIGIN: http://localhost:3000
+      API_KEY_IA: ${API_KEY_IA:-}
     depends_on:
       mongodb:
         condition: service_healthy
     networks:
-      - talentai-network
+      - chassist-network
 
   frontend:
     build:
@@ -47,10 +48,10 @@ services:
     depends_on:
       - backend
     networks:
-      - talentai-network
+      - chassist-network
 
 networks:
-  talentai-network:
+  chassist-network:
     driver: bridge
 
 volumes:

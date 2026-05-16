@@ -5,15 +5,15 @@ import { usePathname } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import Avatar from '@/components/ui/Avatar';
 import {
-  LayoutDashboard, Users, Briefcase, UserCheck,
-  LogOut, Sparkles, X,
+  LayoutDashboard, FileSearch, Stethoscope, Settings,
+  LogOut, BrainCircuit, X, Home,
 } from 'lucide-react';
 
 const NAV_ITEMS = [
-  { href: '/dashboard',   label: 'Dashboard',   icon: LayoutDashboard },
-  { href: '/employees',   label: 'Empleados',   icon: Users },
-  { href: '/jobs',        label: 'Vacantes',     icon: Briefcase },
-  { href: '/candidates',  label: 'Candidatos',  icon: UserCheck },
+  { href: '/menu',          label: 'Inicio',                  icon: Home,            desc: 'Menú principal' },
+  { href: '/cv-dashboard',  label: 'Dashboard Candidatos',    icon: LayoutDashboard, desc: 'Pantalla 1' },
+  { href: '/cv-analysis',   label: 'Análisis de CVs',         icon: FileSearch,      desc: 'Pantalla 2' },
+  { href: '/hr-tests',      label: 'Herramientas HR',         icon: Stethoscope,     desc: 'Pantalla 3' },
 ];
 
 export default function Sidebar({ isOpen, onClose }) {
@@ -22,7 +22,6 @@ export default function Sidebar({ isOpen, onClose }) {
 
   return (
     <>
-      {/* Mobile overlay */}
       {isOpen && (
         <div
           className="fixed inset-0 bg-slate-900/50 z-30 lg:hidden"
@@ -30,7 +29,6 @@ export default function Sidebar({ isOpen, onClose }) {
         />
       )}
 
-      {/* Sidebar */}
       <aside
         className={`
           fixed top-0 left-0 h-full w-64 bg-slate-900 z-40 flex flex-col
@@ -41,15 +39,15 @@ export default function Sidebar({ isOpen, onClose }) {
       >
         {/* Logo */}
         <div className="flex items-center justify-between px-5 py-5 border-b border-slate-700/50">
-          <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center flex-shrink-0">
-              <Sparkles size={16} className="text-white" />
+          <Link href="/menu" onClick={onClose} className="flex items-center gap-2.5 group">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+              <BrainCircuit size={16} className="text-white" />
             </div>
             <div>
-              <span className="text-white font-bold text-lg leading-none">TalentAI</span>
+              <span className="text-white font-bold text-lg leading-none">CH Assist</span>
               <p className="text-slate-400 text-xs leading-none mt-0.5">IA para RRHH</p>
             </div>
-          </div>
+          </Link>
           <button
             onClick={onClose}
             className="lg:hidden p-1 rounded-lg text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"
@@ -59,9 +57,9 @@ export default function Sidebar({ isOpen, onClose }) {
         </div>
 
         {/* Navigation */}
-        <nav className="flex-1 px-3 py-4 space-y-0.5">
+        <nav className="flex-1 px-3 py-4 space-y-0.5 overflow-y-auto">
           <p className="px-3 text-xs font-semibold text-slate-500 uppercase tracking-widest mb-2">
-            Menú principal
+            Pantallas
           </p>
           {NAV_ITEMS.map(({ href, label, icon: Icon }) => {
             const active = pathname === href || pathname.startsWith(href + '/');
@@ -87,6 +85,27 @@ export default function Sidebar({ isOpen, onClose }) {
               </Link>
             );
           })}
+
+          <div className="pt-4">
+            <p className="px-3 text-xs font-semibold text-slate-500 uppercase tracking-widest mb-2">
+              Sistema
+            </p>
+            <Link
+              href="/settings"
+              onClick={onClose}
+              className={`
+                flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium
+                transition-all duration-150 group
+                ${pathname === '/settings'
+                  ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-900/30'
+                  : 'text-slate-400 hover:text-white hover:bg-slate-800'
+                }
+              `}
+            >
+              <Settings size={18} className={`flex-shrink-0 ${pathname === '/settings' ? 'text-white' : 'text-slate-500 group-hover:text-slate-300'}`} />
+              Configuración
+            </Link>
+          </div>
         </nav>
 
         {/* User section */}
