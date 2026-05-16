@@ -8,13 +8,17 @@
     "start": "next start"
   },
   "dependencies": {
+    "@babel/runtime": "^7.29.2",
     "lucide-react": "^0.390.0",
     "next": "^14.2.29",
     "react": "^18",
     "react-dom": "^18"
   },
   "devDependencies": {
+    "@babel/core": "^7.29.0",
     "autoprefixer": "^10",
+    "babel-plugin-module-resolver": "^5.0.3",
+    "babel-preset-next": "^1.4.0",
     "postcss": "^8",
     "tailwindcss": "^3"
   }
